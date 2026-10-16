@@ -92,13 +92,13 @@ void gst_westeros_sink_soc_class_init(GstWesterosSinkClass *klass);
 #### 4.2 `gst_westeros_sink_soc_init`
 
 **Prototype**
-```c
-gboolean gst_westeros_sink_soc_init(GstWesterosSink *sink);
-```
+~~~c
+void gst_westeros_sink_soc_init(GstWesterosSink *sink);
+~~~
 
 - **Purpose:** Creates or initializes per-instance SoC state before platform-dependent playback activity.
 - **Parameters:** `sink`: sink instance whose platform state is initialized; non-NULL.
-- **Return values / postconditions:** `TRUE` when initialization succeeds; `FALSE` when required SoC state cannot be initialized.
+- **Return values / postconditions:** No return value; this hook runs as part of GObject instance initialization. Initialization failures shall be recorded in per-instance state and reported through diagnostics. Subsequent checked setup/state-transition hooks shall return `FALSE` if required state is unavailable. The instance shall remain safe to terminate after partial initialization.
 
 #### 4.3 `gst_westeros_sink_soc_term`
 
